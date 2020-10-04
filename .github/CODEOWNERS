@@ -1,0 +1,6 @@
+# Learn how to add code owners here:
+# https://help.github.com/en/articles/about-code-owners
+
+*          @R3tr074
+/bin/      @R3tr074
+/tests/    @R3tr074
