@@ -1,6 +1,6 @@
 import requests
 import random
-import bin.addons.random_data as randomData
+from bin.addons.utils import random_useragent
 from stringcolor import *
 
 
@@ -11,7 +11,7 @@ yellow = "#eefc32"
 # Load user agents
 user_agents = []
 for _ in range(30):
-    user_agents.append(randomData.random_useragent())
+    user_agents.append(random_useragent())
 
 # Headers
 headers = {

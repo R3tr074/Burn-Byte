@@ -1,9 +1,9 @@
 wget
 scapy
+pytest
 requests
 argparse
 colorama
 string-color
 humanfriendly
 simple_term_menu
-pytest

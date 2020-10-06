@@ -71,6 +71,8 @@ become a **watcher** to receive news and stay on top of new features
 </tbody>
 </table>
 
+# To learn more to each method, go to [Burn Byte Docs](https://burn-byte.tk)
+
 # :recycle: How to help and contribute to the project?
 
 ## View the [contributing guidelines](https://github.com/R3tr074/Burn-Byte/blob/master/.github/CONTRIBUTING.md)
@@ -81,31 +83,7 @@ become a **watcher** to receive news and stay on top of new features
 
 # :gift: Installation:
 
-- Windows:
-
-  - Download Python 3.8 from [here](https://www.python.org/downloads/release/python-38)
-  - Launch installer, click `add python to PATH`
-  - Download Burn Byte
-  - Open cmd or powershell in Burn Byte directory
-  - Run this command: `pip install -r requirements.txt`
-  - And this: `python burn.py --help`
-
-- Linux:
-
-  - `sudo apt update`
-  - `sudo apt install python3 python3-pip git -y`
-  - `git clone https://github.com/R3tr074/burn-byte`
-  - `cd burn-byte/`
-  - `pip3 install -r requirements.txt`
-  - `python3 burn.py --help`
-
-- Termux:
-  - `pkg update`
-  - `pkg install python3 python3-pip git -y`
-  - `git clone https://github.com/R3tr074/burn-byte`
-  - `cd burn/`
-  - `pip3 install -r requirements.txt`
-  - `python3 burn.py --help`
+To install Burn Byte for any platform, go to [Burn Byte Docs](https://burn-byte.tk/docs/getting-started#setup)
 
 ---
 

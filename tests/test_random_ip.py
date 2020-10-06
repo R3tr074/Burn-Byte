@@ -1,4 +1,4 @@
-from bin.addons.random_data import random_IP
+from bin.addons.utils import random_IP
 import re
 
 

@@ -1,7 +1,7 @@
 # Import modules
 import random
 import socket
-import bin.addons.random_data as randomData
+from bin.addons.utils import random_useragent
 from colorama import Fore
 from stringcolor import *
 
@@ -25,8 +25,7 @@ def create_socket(target):
                                                           2000)).encode("utf-8")
         )
         sock.send(
-            "User-Agent: {}\r\n".format(randomData.random_useragent()
-                                        ).encode("utf-8")
+            "User-Agent: {}\r\n".format(random_useragent()).encode("utf-8")
         )
         sock.send("{}\r\n".format(
             "Accept-language: en-US,en,q=0.5").encode("utf-8"))

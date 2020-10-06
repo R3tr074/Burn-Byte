@@ -1,5 +1,5 @@
 import random
-from bin.addons.random_data import random_IP
+from bin.addons.utils import random_IP
 from scapy.layers.inet import ICMP, IP
 from scapy.sendrecv import send
 from stringcolor import *
