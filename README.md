@@ -1,6 +1,6 @@
 # :fire: Burn Byte
 
-## Ready to burn some servers?
+# Burn Byte will be discontinued and it will be deleted on October 9th
 
 <p align="center">
   <img src="http://svgur.com/i/Q6s.svg" height="150px" alt="logo">
