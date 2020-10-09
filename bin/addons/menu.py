@@ -58,7 +58,7 @@ def menu():
             if threads == '':
                 break
             threads = int(threads)
-            if threads > 1 or threads < 200:
+            if threads >= 1 and threads <= 200:
                 break
         except ValueError:
             print(f"{red}Please, enter a number between 1 and 200!{reset}")
@@ -70,7 +70,7 @@ def menu():
             if time == '':
                 break
             time = int(time)
-            if time > 0:
+            if time >= 0:
                 break
         except ValueError:
             print(f"{red}Please enter a number greater than 0!{reset}")
