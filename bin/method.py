@@ -1,11 +1,12 @@
 # Import modules
+import sys
+from stringcolor import *
 from time import time, sleep
 from threading import Thread
-import sys
-from bin.addons.banner import methods_help
-from stringcolor import *
-from humanfriendly import format_timespan, Spinner
 from bin.crash import CriticalError
+from bin.addons.banner import banner
+from bin.addons.banner import methods_help
+from humanfriendly import format_timespan, Spinner
 from bin.addons.ip_tools import GetTargetAddress, InternetConnectionCheck
 
 
@@ -25,7 +26,8 @@ def GetMethodByName(method):
                "memcached",
                "ntp",
                "udp",
-               "ssdp"
+               "ssdp",
+               "armagedom"
                ]
 
     if method == "POD":
@@ -148,8 +150,13 @@ class AttackMethod:
             print(
                 f"\n\033[1m{cs('[✘] ERROR', red)}\033[0m {cs(f'Ctrl+C detected. Stopping {self.threads_count} threads..', yellow)}"
             )
+            print(f"{cs('Please, wait for all threads stop', yellow)}")
             # Wait all threads for stop
             for thread in self.threads:
                 thread.join()
+            banner()
         except Exception as err:
             print(err)
+            sleep(1.5)
+            import bin.addons.clean
+            banner()

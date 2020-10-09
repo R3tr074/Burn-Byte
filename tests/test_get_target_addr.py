@@ -209,3 +209,25 @@ def test_get_target_addr_udp():
 
     ip, port = GetTargetAddress(ip_target+":"+port_target, method)
     assert verify_ip(ip) and port == int(port_target)
+
+
+def test_get_target_addr_armagedom():
+    https_target = "https://github.com"
+    http_target = "http://github.com"
+    url_target = "github.com"
+    port_target = "80"
+    ip_target = "140.82.113.3"
+
+    method = "armagedom"
+
+    ip, port = GetTargetAddress(https_target, method)
+    assert verify_ip(ip) and port == 80
+
+    ip, port = GetTargetAddress(http_target, method)
+    assert verify_ip(ip) and port == 80
+
+    url, port = GetTargetAddress(url_target+":"+port_target, method)
+    assert url == url_target and port == int(port_target)
+
+    ip, port = GetTargetAddress(ip_target+":"+port_target, method)
+    assert verify_ip(ip) and port == int(port_target)

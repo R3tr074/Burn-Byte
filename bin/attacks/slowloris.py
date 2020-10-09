@@ -17,7 +17,6 @@ def create_socket(target):
     try:
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.settimeout(4)
-        print(target)
         sock.connect((target[0], target[1]))
 
         sock.send(

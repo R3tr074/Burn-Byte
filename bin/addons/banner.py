@@ -7,8 +7,10 @@ orange2 = "#FF760D"
 orange3 = "#E69D00"
 purple = "#7202fc"
 
+
 space = "  "
 
+purple1 = "\033[38;5;92m"
 pink2 = "\033[38;5;200m"
 light_blue = "\033[38;5;51m"
 reset = "\033[0m"
@@ -55,42 +57,17 @@ def methods_help():
     print(f"{space}memcached:\tThe attack spoofs requests to a vulnerable memcached UDP server")
     print(f"{space}ntp:      \tThe NTP amplification attack is a reflection-based volumetric distributed denial of service attack")
     print(f"{space}udp:      \tA flood of UDP is carried out with a large number of requests with the user datagram protocol (UDP)")
+    print(f"{space}ssdp:     \tSSDP enabled network devices that are also accessible to UPnP from the internet are an easy source for generating SSDP amplification floods.")
+    print("\nWhich one is the best? find out for yourself:")
+    print(f"\033[1m{purple1}https://burn-byte.tk/docs{reset}\033[0m")
 
 
 def reference():
     methods_help()
     print()
     print(cs("Links to learning", purple))
-    print(f"{space}Ping Of Death:")
-    print(f"https://www.cloudflare.com/learning/ddos/ping-of-death-ddos-attack")
-    print(f"https://www.techopedia.com/definition/4051/ping-of-death")
-
-    print(f"{space}HTTP flood:")
-    print(f"https://www.cloudflare.com/learning/ddos/http-flood-ddos-attack")
-    print(f"https://www.imperva.com/learn/ddos/http-flood")
-
-    print(f"{space}Slowloris:")
-    print("https://www.cloudflare.com/learning/ddos/ddos-attack-tools/slowloris")
-    print("https://www.imperva.com/learn/ddos/slowloris")
-
-    print(f"{space}TCP Syn Flood:")
-    print("https://www.cloudflare.com/learning/ddos/syn-flood-ddos-attack")
-    print("https://www.imperva.com/learn/ddos/syn-flood")
-
-    print(f"{space}Icmp(ping) Flood:")
-    print("https://www.cloudflare.com/pt-br/learning/ddos/memcached-ddos-attack")
-    print("https://www.imperva.com/learn/ddos/ping-icmp-flood/")
-
-    print(f"{space}Memcached:")
-    print("https://www.cloudflare.com/pt-br/learning/ddos/memcached-ddos-attack")
-
-    print(f"{space}NTP Amplification")
-    print("https://www.cloudflare.com/learning/ddos/ntp-amplification-ddos-attack")
-    print("https://www.imperva.com/learn/ddos/ntp-amplification")
-
-    print(f"{space}UDP flood")
-    print("https://www.cloudflare.com/learning/ddos/udp-flood-ddos-attack")
-    print("https://www.imperva.com/learn/ddos/udp-flood")
+    print(f"{space}Burn Byte documentation:")
+    print(f"https://www.burn-byte.tk")
 
 
 """

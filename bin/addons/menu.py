@@ -11,6 +11,7 @@ light_blue = "\033[38;5;45m"
 reset = "\033[0m"
 pink = "\033[38;5;200m"
 red = "\033[38;5;196m"
+yellow = "\033[38;5;11m"
 
 
 def menu():
@@ -37,6 +38,7 @@ def menu():
         "[6] NTP Amplification": "ntp",
         "[7] UDP Flood": "udp",
         "[8] Ssdp Amplification": "ssdp",
+        f"[☠] \033[1m{red}ARMAGEDOM{reset} {yellow}(DANGER){reset}": "armagedom"
     }
 
     title = f"{purple}Method {blue}[Use arrows to move]\033[0m"
@@ -47,7 +49,7 @@ def menu():
     for index, attack in enumerate(attacks):
         if index == menu_index:
             method = attacks[attack]
-    print(f"{purple}{method}{green} method selected{reset}")
+    print(f"{yellow}{method}{green} method selected{reset}")
 
     while True:
         try:
