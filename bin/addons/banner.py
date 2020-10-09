@@ -14,6 +14,8 @@ purple1 = "\033[38;5;92m"
 pink2 = "\033[38;5;200m"
 light_blue = "\033[38;5;51m"
 reset = "\033[0m"
+red = "\033[38;5;196m"
+yellow = "\033[38;5;11m"
 
 
 def banner():
@@ -58,6 +60,7 @@ def methods_help():
     print(f"{space}ntp:      \tThe NTP amplification attack is a reflection-based volumetric distributed denial of service attack")
     print(f"{space}udp:      \tA flood of UDP is carried out with a large number of requests with the user datagram protocol (UDP)")
     print(f"{space}ssdp:     \tSSDP enabled network devices that are also accessible to UPnP from the internet are an easy source for generating SSDP amplification floods.")
+    print(f"{space}{yellow}☢ {red}ARMAGEDOM{yellow} ☢{reset} Armageddon uses all methods together in an attack.")
     print("\nWhich one is the best? find out for yourself:")
     print(f"\033[1m{purple1}https://burn-byte.tk/docs{reset}\033[0m")
 
@@ -72,35 +75,5 @@ def reference():
 
 """
 References:
-  Ping Of Death:
-https://www.cloudflare.com/learning/ddos/ping-of-death-ddos-attack
-https://www.techopedia.com/definition/4051/ping-of-death
-
-  HTTP flood:
-https://www.cloudflare.com/learning/ddos/http-flood-ddos-attack
-https://www.imperva.com/learn/ddos/http-flood
-
-  Slowloris:
-https://www.cloudflare.com/learning/ddos/ddos-attack-tools/slowloris
-https://www.imperva.com/learn/ddos/slowloris
-
-  TCP Syn Flood:
-https://www.cloudflare.com/learning/ddos/syn-flood-ddos-attack
-https://www.imperva.com/learn/ddos/syn-flood
-
-  Icmp(ping) Flood:
-https://www.cloudflare.com/pt-br/learning/ddos/memcached-ddos-attack
-https://www.imperva.com/learn/ddos/ping-icmp-flood/
-
-  Memcached:
-https://www.cloudflare.com/pt-br/learning/ddos/memcached-ddos-attack
-
-  NTP Amplification
-https://www.cloudflare.com/learning/ddos/ntp-amplification-ddos-attack
-https://www.imperva.com/learn/ddos/ntp-amplification
-
-  UDP flood
-https://www.cloudflare.com/learning/ddos/udp-flood-ddos-attack
-https://www.imperva.com/learn/ddos/udp-flood
-
+  https://www.burn-byte.tk
 """
