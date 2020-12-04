@@ -32,37 +32,41 @@ def arg_manager(argv):
             return 0
 
         if arg in ("-u", "--target"):
-            target = argv[index+1]
+            target = argv[index + 1]
 
         if arg in ("-t", "--threads"):
-            threads = argv[index+1]
+            threads = argv[index + 1]
             try:
                 if int(threads) < 1 or int(threads) > 200:
                     print(
-                        f"{red}[✘] ERROR {threads} not is a valid value to threads flag, use 1 - 200{reset}")
+                        f"{red}[✘] ERROR {threads} not is a valid value to threads flag, use 1 - 200{reset}"
+                    )
                     return 1
             except:
                 print(
-                    f"{red}[✘] ERROR {threads} not is a valid value to threads flag, use 1 - 200{reset}")
+                    f"{red}[✘] ERROR {threads} not is a valid value to threads flag, use 1 - 200{reset}"
+                )
                 return 1
         if arg == "--banner":
             banner()
             return 0
 
         if arg == "--time":
-            time = argv[index+1]
+            time = argv[index + 1]
             try:
                 if int(time) < 0:
                     print(
-                        f"{red}[✘] ERROR {time} not is a valid value to time flag, use any value greater than 0{reset}")
+                        f"{red}[✘] ERROR {time} not is a valid value to time flag, use any value greater than 0{reset}"
+                    )
                     return 1
             except:
                 print(
-                    f"{red}[✘] ERROR {time} not is a valid value to time flag, use any value greater than 0{reset}")
+                    f"{red}[✘] ERROR {time} not is a valid value to time flag, use any value greater than 0{reset}"
+                )
                 return 1
 
         if arg in ("-m", "--method"):
-            method = argv[index+1]
+            method = argv[index + 1]
             if method in ("help", "--help", "-h", "h"):
                 methods_help()
                 return 0

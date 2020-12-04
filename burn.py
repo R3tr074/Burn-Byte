@@ -14,11 +14,13 @@ reset = "\033[0m"
 
 # Import modules
 try:
-    import bin.addons.clean
+    from bin.addons.clean import clear
     from bin.method import AttackMethod
     from bin.addons.banner import main_help
     from bin.addons.utils import root_privileges
     from bin.addons.arg_manager import arg_manager
+
+    clear()
 except ImportError as err:
     CriticalError("Failed import some modules", err)
     sys.exit(1)
@@ -40,9 +42,11 @@ root = args["root"]
 
 if not root_privileges() and root:
     print(
-        f"{red}Error:{blue} superuser privileges are required to use correctly{reset}")
+        f"{red}Error:{blue} superuser privileges are required to use correctly{reset}"
+    )
     print(
-        f"{yellow}If you want to ignore this error, use the {red}--no-root{yellow} flag. (Not recommended){reset}")
+        f"{yellow}If you want to ignore this error, use the {red}--no-root{yellow} flag. (Not recommended){reset}"
+    )
     sys.exit(1)
 
 

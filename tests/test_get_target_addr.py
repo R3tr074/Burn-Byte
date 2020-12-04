@@ -28,10 +28,10 @@ def test_get_target_addr_pod():
     ip, port = GetTargetAddress(http_target, method)
     assert verify_ip(ip) and port == 80
 
-    url, port = GetTargetAddress(url_target+":"+port_target, method)
+    url, port = GetTargetAddress(url_target + ":" + port_target, method)
     assert url == url_target and port == int(port_target)
 
-    ip, port = GetTargetAddress(ip_target+":"+port_target, method)
+    ip, port = GetTargetAddress(ip_target + ":" + port_target, method)
     assert verify_ip(ip) and port == int(port_target)
 
 
@@ -50,10 +50,10 @@ def test_get_target_addr_syn():
     ip, port = GetTargetAddress(http_target, method)
     assert verify_ip(ip) and port == 80
 
-    url, port = GetTargetAddress(url_target+":"+port_target, method)
+    url, port = GetTargetAddress(url_target + ":" + port_target, method)
     assert url == url_target and port == int(port_target)
 
-    ip, port = GetTargetAddress(ip_target+":"+port_target, method)
+    ip, port = GetTargetAddress(ip_target + ":" + port_target, method)
     assert verify_ip(ip) and port == int(port_target)
 
 
@@ -72,10 +72,10 @@ def test_get_target_addr_slowloris():
     ip, port = GetTargetAddress(http_target, method)
     assert verify_ip(ip) and port == 80
 
-    url, port = GetTargetAddress(url_target+":"+port_target, method)
+    url, port = GetTargetAddress(url_target + ":" + port_target, method)
     assert url == url_target and port == int(port_target)
 
-    ip, port = GetTargetAddress(ip_target+":"+port_target, method)
+    ip, port = GetTargetAddress(ip_target + ":" + port_target, method)
     assert verify_ip(ip) and port == int(port_target)
 
 
@@ -94,10 +94,10 @@ def test_get_target_addr_http():
     ip, port = GetTargetAddress(http_target, method)
     assert verify_ip(ip) and port == 80
 
-    url, port = GetTargetAddress(url_target+":"+port_target, method)
+    url, port = GetTargetAddress(url_target + ":" + port_target, method)
     assert url == url_target and port == int(port_target)
 
-    ip, port = GetTargetAddress(ip_target+":"+port_target, method)
+    ip, port = GetTargetAddress(ip_target + ":" + port_target, method)
     assert verify_ip(ip) and port == int(port_target)
 
 
@@ -116,10 +116,10 @@ def test_get_target_addr_icmp():
     ip, port = GetTargetAddress(http_target, method)
     assert verify_ip(ip) and port == 80
 
-    url, port = GetTargetAddress(url_target+":"+port_target, method)
+    url, port = GetTargetAddress(url_target + ":" + port_target, method)
     assert url == url_target and port == int(port_target)
 
-    ip, port = GetTargetAddress(ip_target+":"+port_target, method)
+    ip, port = GetTargetAddress(ip_target + ":" + port_target, method)
     assert verify_ip(ip) and port == int(port_target)
 
 
@@ -138,10 +138,10 @@ def test_get_target_addr_memcached():
     ip, port = GetTargetAddress(http_target, method)
     assert verify_ip(ip) and port == 80
 
-    url, port = GetTargetAddress(url_target+":"+port_target, method)
+    url, port = GetTargetAddress(url_target + ":" + port_target, method)
     assert url == url_target and port == int(port_target)
 
-    ip, port = GetTargetAddress(ip_target+":"+port_target, method)
+    ip, port = GetTargetAddress(ip_target + ":" + port_target, method)
     assert verify_ip(ip) and port == int(port_target)
 
 
@@ -160,10 +160,10 @@ def test_get_target_addr_ntp():
     ip, port = GetTargetAddress(http_target, method)
     assert verify_ip(ip) and port == 80
 
-    url, port = GetTargetAddress(url_target+":"+port_target, method)
+    url, port = GetTargetAddress(url_target + ":" + port_target, method)
     assert url == url_target and port == int(port_target)
 
-    ip, port = GetTargetAddress(ip_target+":"+port_target, method)
+    ip, port = GetTargetAddress(ip_target + ":" + port_target, method)
     assert verify_ip(ip) and port == int(port_target)
 
 
@@ -182,10 +182,10 @@ def test_get_target_addr_udp():
     ip, port = GetTargetAddress(http_target, method)
     assert verify_ip(ip) and port == 80
 
-    url, port = GetTargetAddress(url_target+":"+port_target, method)
+    url, port = GetTargetAddress(url_target + ":" + port_target, method)
     assert url == url_target and port == int(port_target)
 
-    ip, port = GetTargetAddress(ip_target+":"+port_target, method)
+    ip, port = GetTargetAddress(ip_target + ":" + port_target, method)
     assert verify_ip(ip) and port == int(port_target)
 
 
@@ -204,10 +204,10 @@ def test_get_target_addr_udp():
     ip, port = GetTargetAddress(http_target, method)
     assert verify_ip(ip) and port == 80
 
-    url, port = GetTargetAddress(url_target+":"+port_target, method)
+    url, port = GetTargetAddress(url_target + ":" + port_target, method)
     assert url == url_target and port == int(port_target)
 
-    ip, port = GetTargetAddress(ip_target+":"+port_target, method)
+    ip, port = GetTargetAddress(ip_target + ":" + port_target, method)
     assert verify_ip(ip) and port == int(port_target)
 
 
@@ -226,8 +226,8 @@ def test_get_target_addr_armagedom():
     ip, port = GetTargetAddress(http_target, method)
     assert verify_ip(ip) and port == 80
 
-    url, port = GetTargetAddress(url_target+":"+port_target, method)
+    url, port = GetTargetAddress(url_target + ":" + port_target, method)
     assert url == url_target and port == int(port_target)
 
-    ip, port = GetTargetAddress(ip_target+":"+port_target, method)
+    ip, port = GetTargetAddress(ip_target + ":" + port_target, method)
     assert verify_ip(ip) and port == int(port_target)

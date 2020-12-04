@@ -12,7 +12,7 @@ yellow = "#ffcc00"
 """ This function will stop the program when a critical error occurs """
 
 py_version = platform.python_version()
-py_build = '{}, DATE: {}'.format(*platform.python_build())
+py_build = "{}, DATE: {}".format(*platform.python_build())
 py_compiler = platform.python_compiler()
 script_location = os.path.dirname(os.path.realpath(sys.argv[0]))
 current_location = os.getcwd()
@@ -20,14 +20,16 @@ current_location = os.getcwd()
 system = platform.system()
 system_realese = platform.release()
 system_version = platform.version()
-system_architecture = {'{} {}'.format(*platform.architecture())}
+system_architecture = {"{} {}".format(*platform.architecture())}
 system_processor = platform.processor()
 system_machine = platform.machine()
 system_node = platform.node()
 system_time = ctime()
 
+
 def CriticalError(message, error):
-    print(f"""
+    print(
+        f"""
     {cs(":=== Critical error:", red)}
     {cs(f"MESSAGE: {message}", purple)}
     {cs(f"ERROR: {error}", purple)}
@@ -48,6 +50,6 @@ def CriticalError(message, error):
     {cs(f"TIME: {system_time}", purple)}
     {cs(":=== Report:", red)}
     {cs("Please report it here: https://github.com/R3tr074/BurnByte/issues/new", yellow)}
-    """)
+    """
+    )
     sys.exit(5)
-

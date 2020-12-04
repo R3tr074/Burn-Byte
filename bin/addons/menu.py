@@ -17,11 +17,11 @@ yellow = "\033[38;5;11m"
 def menu():
     while True:
         target = input(
-            f"{purple}Target{reset}({green}ip{light_blue}:{green}port{light_blue}/{green}url{reset}): ")
+            f"{purple}Target{reset}({green}ip{light_blue}:{green}port{light_blue}/{green}url{reset}): "
+        )
         if target and not target.isspace():
             if not CheckTargetConnection(target):
-                print(
-                    f"{red}Error{blue} to connect to the target, try againg{reset}")
+                print(f"{red}Error{blue} to connect to the target, try againg{reset}")
             else:
                 break
 
@@ -38,7 +38,7 @@ def menu():
         "[6] NTP Amplification": "ntp",
         "[7] UDP Flood": "udp",
         "[8] Ssdp Amplification": "ssdp",
-        f"[☠] \033[1m{red}ARMAGEDOM{reset} {yellow}(DANGER){reset}": "armagedom"
+        f"[☠] \033[1m{red}ARMAGEDOM{reset} {yellow}(DANGER){reset}": "armagedom",
     }
 
     title = f"{purple}Method {blue}[Use arrows to move]\033[0m"
@@ -54,8 +54,9 @@ def menu():
     while True:
         try:
             threads = input(
-                f"{purple}Threads{reset}({green}Enter to default: {light_blue}3{reset}): ")
-            if threads == '':
+                f"{purple}Threads{reset}({green}Enter to default: {light_blue}3{reset}): "
+            )
+            if threads == "":
                 break
             threads = int(threads)
             if threads >= 1 and threads <= 200:
@@ -66,8 +67,9 @@ def menu():
     while True:
         try:
             time = input(
-                f"{purple}Time in seconds{reset}({green}Enter to default: {light_blue}10{pink}s{reset}): ")
-            if time == '':
+                f"{purple}Time in seconds{reset}({green}Enter to default: {light_blue}10{pink}s{reset}): "
+            )
+            if time == "":
                 break
             time = int(time)
             if time >= 0:
@@ -80,10 +82,10 @@ def menu():
         if arg == "--no-root":
             root = False
 
-    if threads == '':
+    if threads == "":
         threads = 3
 
-    if time == '':
+    if time == "":
         time = 10
 
     return target, method, threads, time, root

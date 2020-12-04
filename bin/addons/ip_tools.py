@@ -38,8 +38,7 @@ def __GetAddressInfo(target):
         ip = target.split(":")[0]
         port = int(target.split(":")[1])
     except IndexError:
-        print(
-            f"{Fore.RED}[!] {Fore.MAGENTA}You must enter ip and port{Fore.RESET}")
+        print(f"{Fore.RED}[!] {Fore.MAGENTA}You must enter ip and port{Fore.RESET}")
         sys.exit(1)
     else:
         return ip, port
@@ -68,7 +67,7 @@ def GetTargetAddress(target, method):
         "ntp",
         "udp",
         "ssdp",
-        "armagedom"
+        "armagedom",
     ]
 
     if method in methods and target.startswith("http"):
@@ -109,9 +108,9 @@ def CheckTargetConnection(target):
 
     if platform.system().lower() == "windows":
         ping_str = "-n 1"
-        resposta = os.system("ping "+ping_str+" "+target+" > NUL")
+        resposta = os.system("ping " + ping_str + " " + target + " > NUL")
     else:
         ping_str = "-c 1"
-        resposta = os.system("ping "+ping_str+" "+target+" > /dev/null 2>&1")
+        resposta = os.system("ping " + ping_str + " " + target + " > /dev/null 2>&1")
 
     return resposta == 0

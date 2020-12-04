@@ -18,24 +18,27 @@ yellow = "#eefc32"
 
 
 def GetMethodByName(method):
-    methods = ["syn",
-               "slowloris",
-               "http",
-               "slowloris",
-               "icmp",
-               "memcached",
-               "ntp",
-               "udp",
-               "ssdp",
-               "armagedom"
-               ]
+    methods = [
+        "syn",
+        "slowloris",
+        "http",
+        "slowloris",
+        "icmp",
+        "memcached",
+        "ntp",
+        "udp",
+        "ssdp",
+        "armagedom",
+    ]
 
     if method == "POD":
         dir = "bin.attacks.ping_of_death"
     elif method in methods:
         dir = f"bin.attacks.{method}"
     else:
-        print(f"\033[1m{cs('[✘] ERROR', red)}\033[0m {cs('Unknown ddos method', yellow)} {cs(repr(method), red)} {cs('selected.', yellow)}")
+        print(
+            f"\033[1m{cs('[✘] ERROR', red)}\033[0m {cs('Unknown ddos method', yellow)} {cs(repr(method), red)} {cs('selected.', yellow)}"
+        )
         methods_help()
         sys.exit(1)
 
@@ -73,7 +76,8 @@ class AttackMethod:
     # Exit
     def __exit__(self, exc_type, exc_val, exc_tb):
         print(
-            f"\033[1m{cs('[✔] SUCCESS', green)}\033[0m {cs('Attack completed!', purple)}")
+            f"\033[1m{cs('[✔] SUCCESS', green)}\033[0m {cs('Attack completed!', purple)}"
+        )
 
     # Run time checker
     def __RunTimer(self):
@@ -100,9 +104,6 @@ class AttackMethod:
         # Run timer thread
         thread = Thread(target=self.__RunTimer)
         thread.start()
-        # Check if 1 thread
-        if self.name == "EMAIL":
-            self.threads_count = 1
         # Create flood threads
         for _ in range(self.threads_count):
             thread = Thread(target=self.__RunFlood)
@@ -118,18 +119,20 @@ class AttackMethod:
         # Wait flood threads for stop
         for index, thread in enumerate(self.threads):
             thread.join()
-            print(
-                f"{cs('[+]', green)} {cs(f'Stopped thread {(index + 1)}', yellow)}"
-            )
+            print(f"{cs('[+]', green)} {cs(f'Stopped thread {(index + 1)}', yellow)}")
 
     # Start ddos attack
     def Start(self):
-        target = str(self.target).strip(
-            "()").replace(", ", ":").replace("'", "")
+        target = str(self.target).strip("()").replace(", ", ":").replace("'", "")
         duration = format_timespan(self.duration)
 
-        never = cs("N", "#ff0000")+cs("E", "#ffa500") + \
-            cs("V", "#008000")+cs("E", "#7202fc")+cs("R", "#ee82ee")
+        never = (
+            cs("N", "#ff0000")
+            + cs("E", "#ffa500")
+            + cs("V", "#008000")
+            + cs("E", "#7202fc")
+            + cs("R", "#ee82ee")
+        )
 
         if self.duration != 0:
             print(
@@ -158,5 +161,7 @@ class AttackMethod:
         except Exception as err:
             print(err)
             sleep(1.5)
-            import bin.addons.clean
+            from bin.addons.clean import clear
+
+            clear()
             banner()

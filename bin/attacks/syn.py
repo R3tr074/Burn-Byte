@@ -27,7 +27,9 @@ def flood(target):
             send(IP_Packet / TCP_Packet, verbose=False)
         except Exception as e:
             print(
-                f"\033[1m{cs('[✘] ERROR', red)}\033[0m {cs('while sending SYN packet', yellow)}\n{e}")
+                f"\033[1m{cs('[✘] ERROR', red)}\033[0m {cs('while sending SYN packet', yellow)}\n{e}"
+            )
         else:
             print(
-                f"{cs(f'[✔] SUCCESS', green)} {cs(f'SYN packet sent to', yellow)} {blue}{'{}:{}'.format(*target)}\033[0m")
+                f"{cs(f'[✔] SUCCESS', green)} {cs(f'SYN packet sent to', yellow)} {blue}{'{}:{}'.format(*target)}\033[0m"
+            )
