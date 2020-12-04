@@ -28,7 +28,7 @@ def GetMethodByName(method):
         "ntp",
         "udp",
         "ssdp",
-        "armagedom",
+        "armageddos",
     ]
 
     if method == "POD":

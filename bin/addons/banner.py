@@ -94,7 +94,7 @@ def methods_help():
         f"{space}ssdp:     \tSSDP enabled network devices that are also accessible to UPnP from the internet are an easy source for generating SSDP amplification floods."
     )
     print(
-        f"{space}{yellow}☢ {red}ARMAGEDOM{yellow} ☢{reset} Armageddon uses all methods together in an attack."
+        f"{space}{yellow}☢ {red}ARMAGEDDOS{yellow} ☢{reset} Armageddos uses all methods together in an attack."
     )
     print("\nWhich one is the best? find out for yourself:")
     print(f"\033[1m{purple1}https://burn-byte.tk/docs{reset}\033[0m")

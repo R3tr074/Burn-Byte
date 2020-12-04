@@ -211,14 +211,14 @@ def test_get_target_addr_udp():
     assert verify_ip(ip) and port == int(port_target)
 
 
-def test_get_target_addr_armagedom():
+def test_get_target_addr_armageddos():
     https_target = "https://github.com"
     http_target = "http://github.com"
     url_target = "github.com"
     port_target = "80"
     ip_target = "140.82.113.3"
 
-    method = "armagedom"
+    method = "armageddos"
 
     ip, port = GetTargetAddress(https_target, method)
     assert verify_ip(ip) and port == 80

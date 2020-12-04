@@ -67,7 +67,7 @@ def GetTargetAddress(target, method):
         "ntp",
         "udp",
         "ssdp",
-        "armagedom",
+        "armageddos",
     ]
 
     if method in methods and target.startswith("http"):

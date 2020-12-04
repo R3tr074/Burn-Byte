@@ -38,7 +38,7 @@ def menu():
         "[6] NTP Amplification": "ntp",
         "[7] UDP Flood": "udp",
         "[8] Ssdp Amplification": "ssdp",
-        f"[☠] \033[1m{red}ARMAGEDOM{reset} {yellow}(DANGER){reset}": "armagedom",
+        f"[☠] \033[1m{red}ARMAGEDDOS{reset} {yellow}(DANGER){reset}": "armageddos",
     }
 
     title = f"{purple}Method {blue}[Use arrows to move]\033[0m"
