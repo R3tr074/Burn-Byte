@@ -1,20 +1,23 @@
 # Import modules
 import sys
-from stringcolor import *
 from time import time, sleep
 from threading import Thread
+from rich.console import Console
 from bin.crash import CriticalError
 from bin.addons.banner import banner
 from bin.addons.banner import methods_help
 from humanfriendly import format_timespan, Spinner
 from bin.addons.ip_tools import GetTargetAddress, InternetConnectionCheck
 
+# Define styled print
+print = Console().print
 
-purple = "#7202fc"
-red = "#ff0033"
-green = "#02f93c"
-pink = "#f535aa"
-yellow = "#eefc32"
+purple = "blue_violet"
+red = "red3"
+green = "green1"
+pink = "magenta3"
+light_blue = "dark_slate_gray2"
+yellow = "yellow1"
 
 
 def GetMethodByName(method):
@@ -37,7 +40,10 @@ def GetMethodByName(method):
         dir = f"bin.attacks.{method}"
     else:
         print(
-            f"\033[1m{cs('[✘] ERROR', red)}\033[0m {cs('Unknown ddos method', yellow)} {cs(repr(method), red)} {cs('selected.', yellow)}"
+            f"[{red} bold][✘] ERROR'[/{red} bold] "
+            + f"[{yellow}]Unknown ddos method "
+            + f"[{red}]{repr(method)}[/{red}] "
+            + f"selected.[/{yellow}]"
         )
         methods_help()
         sys.exit(1)
@@ -76,7 +82,8 @@ class AttackMethod:
     # Exit
     def __exit__(self, exc_type, exc_val, exc_tb):
         print(
-            f"\033[1m{cs('[✔] SUCCESS', green)}\033[0m {cs('Attack completed!', purple)}"
+            f"[{green} bold][✔] SUCCESS[/{green} bold] "
+            + f"[{purple}]Attack completed![/{purple}]"
         )
 
     # Run time checker
@@ -110,7 +117,7 @@ class AttackMethod:
             self.threads.append(thread)
         # Start flood threads
         with Spinner(
-            label=f"{cs(f'Starting {self.threads_count} threads', yellow)}",
+            label=f"[{pink}]Starting {self.threads_count} threads[/{pink}]",
             total=100,
         ) as spinner:
             for index, thread in enumerate(self.threads):
@@ -119,7 +126,9 @@ class AttackMethod:
         # Wait flood threads for stop
         for index, thread in enumerate(self.threads):
             thread.join()
-            print(f"{cs('[+]', green)} {cs(f'Stopped thread {(index + 1)}', yellow)}")
+            print(
+                f"[{green}][+][/{green}] [{yellow}]Stopped thread {(index + 1)}[/{yellow}]"
+            )
 
     # Start ddos attack
     def Start(self):
@@ -127,22 +136,30 @@ class AttackMethod:
         duration = format_timespan(self.duration)
 
         never = (
-            cs("N", "#ff0000")
-            + cs("E", "#ffa500")
-            + cs("V", "#008000")
-            + cs("E", "#7202fc")
-            + cs("R", "#ee82ee")
+            f"[{red}]" + "N"
+            f"[{yellow}]" + "E"
+            f"[{green}]" + "V"
+            f"[{purple}]" + "E"
+            f"[{pink}]" + "R"
         )
 
         if self.duration != 0:
             print(
-                f"\033[1m{cs('[?]', pink)}\033[0m {cs('Starting attack to', '#00aeff')} {cs(target, yellow)} {cs('using method', '#00aeff')} {cs(self.name, yellow)}.\n"
-                f"\033[1m{cs('[?]', pink)}\033[0m {cs('Attack will be stopped after', '#00aeff')} \033[1m{cs(duration, pink)}\033[0m."
+                f"[{pink} bold][?][/{pink} bold] "
+                + f"[{light_blue}]Starting attack to[/{light_blue}] "
+                + f"[{yellow}]{target} [{light_blue}]using method[/{light_blue}] "
+                + f"{self.name}[/{yellow}].\n"
+                ""
+                f"[{pink} bold][?][/{pink} bold] "
+                + f"[{light_blue}]Attack will be stopped after[/{light_blue}] [{pink}]{duration}[/{pink}]."
             )
         else:
             print(
-                f"\033[1m{cs('[?]', pink)}\033[0m {cs('Starting attack to', '#00aeff')} {cs(target, yellow)} {cs('using method', '#00aeff')} {cs(self.name, yellow)}.\n"
-                f"\033[1m{cs('[?]', pink)}\033[0m {cs('Attack will be stopped after...', '#00aeff')} \033[1m{never}\033[0m."
+                f"[{pink} bold][?][/{pink} bold] "
+                + f"[{light_blue}]Starting attack to[/{light_blue}] [{yellow}]{target}[/{yellow}] "
+                + f"[{light_blue}]using method[/{light_blue}] [{yellow}]{self.name}[/{yellow}].\n"
+                f"[{pink} bold][?][/{pink} bold] "
+                + f"[{light_blue}]Attack will be stopped after...[/{light_blue}] [b]{never}[/b]"
             )
 
         self.is_running = True
@@ -151,9 +168,10 @@ class AttackMethod:
         except KeyboardInterrupt:
             self.is_running = False
             print(
-                f"\n\033[1m{cs('[✘] ERROR', red)}\033[0m {cs(f'Ctrl+C detected. Stopping {self.threads_count} threads..', yellow)}"
+                f"\n[{red}][✘] ERROR[/{red}] "
+                + f"[{yellow}]Ctrl+C detected. Stopping {self.threads_count} threads...[/{yellow}]"
             )
-            print(f"{cs('Please, wait for all threads stop', yellow)}")
+            print(f"[{yellow}]Please, wait for all threads stop[/{yellow}]")
             # Wait all threads for stop
             for thread in self.threads:
                 thread.join()

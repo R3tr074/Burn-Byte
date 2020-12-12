@@ -2,15 +2,18 @@
 import os
 import sys
 from bin.crash import CriticalError
+from rich.console import Console
 
 # Go to the current directory
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
+# Define styled print
+print = Console().print
+
 # Define colors
-red = "\033[38;5;196m"
-blue = "\033[38;5;51m"
-yellow = "\033[38;5;11m"
-reset = "\033[0m"
+yellow = "yellow1"
+red = "red3"
+blue = "dark_slate_gray2"
 
 # Import modules
 try:
@@ -42,10 +45,11 @@ root = args["root"]
 
 if not root_privileges() and root:
     print(
-        f"{red}Error:{blue} superuser privileges are required to use correctly{reset}"
+        f"[{red}]Error:[{blue}] superuser privileges are required to use correctly[/{red}]"
     )
     print(
-        f"{yellow}If you want to ignore this error, use the {red}--no-root{yellow} flag. (Not recommended){reset}"
+        f"[{yellow}]If you want to ignore this error, use the "
+        + f"[{red}]--no-root[/{red}] flag. (Not recommended)[{yellow}]"
     )
     sys.exit(1)
 

@@ -2,14 +2,16 @@ import random
 from bin.addons.utils import random_IP
 from scapy.layers.inet import ICMP, IP
 from scapy.sendrecv import send
-from stringcolor import *
+from rich.console import Console
 
+# Define styled print
+print = Console().print
+red = "red3"
+green = "green1"
+pink = "magenta3"
+yellow = "yellow1"
+blue = "dark_slate_gray2"
 __junk = list("1234567890qwertyuiopasdfghjklzxcvbnm")
-
-red = "#ff0033"
-green = "#02f93c"
-yellow = "#eefc32"
-blue = "\033[38;5;51m"
 
 
 def flood(target):
@@ -22,9 +24,12 @@ def flood(target):
             send(packet, verbose=False)
         except Exception as e:
             print(
-                f"\033[1m{cs('[✘] ERROR', red)}\033[0m {cs('While sending packget', yellow)}\n{e}"
+                f"[{red} bold][✘] ERROR[/{red} bold] "
+                + f"[{yellow}]While sending packget[/{yellow}]\n{e}"
             )
         else:
             print(
-                f"{cs(f'[✔] SUCCESS', green)} {cs(f'Packget send! Payload size:', yellow)} {blue}{junk_size}\033[0m"
+                f"[{green}][✔] SUCCESS[/{green}] "
+                + f"[{yellow}]Packget send! Payload size:[/{yellow}] "
+                + f"[{blue}]{junk_size}"
             )

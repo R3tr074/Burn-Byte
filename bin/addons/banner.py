@@ -1,111 +1,163 @@
-from stringcolor import *
+from rich.console import Console
+from rich.table import Table
+from rich.panel import Panel
 
-dark_blue = "#2F12B3"
-blue = "#2D42A3"
-pink = "#f535aa"
-orange = "#FFAE00"
-orange2 = "#FF760D"
-orange3 = "#E69D00"
-purple = "#7202fc"
+# Define styled print
+print = Console().print
 
-
-space = "  "
-
-purple1 = "\033[38;5;92m"
-pink2 = "\033[38;5;200m"
-light_blue = "\033[38;5;51m"
-reset = "\033[0m"
-red = "\033[38;5;196m"
-yellow = "\033[38;5;11m"
+# Define colors
+orange = "orange1"
+pink = "magenta3"
+blue2 = "dodger_blue2"
+blue3 = "blue3"
+yellow = "yellow1"
+red = "red3"
+light_blue = "dark_slate_gray2"
+green = "green1"
 
 
 def banner():
-    print(cs("     )                        )           )       ", pink))
-    print(cs("  ( /(    (   (            ( /(  (     ( /(   (   ", orange3))
-    print(cs("  )\())  ))\  )(    (      )\()) )\ )  )\()) ))\  ", orange2))
-    print(cs(" ((_)\  /((_)(()\   )\ )  ((_)\ (()/( (_))/ /((_) ", orange))
+    print("    )                        )           )       ", style=pink)
+    print(" ( /(    (   (            ( /(  (     ( /(   (   ", style=orange)
     print(
-        cs(" | |", blue)
-        + cs("(_)(_)", orange)
-        + cs(")(  ((_) _(_/(  ", pink)
-        + cs("| |", blue)
-        + cs("(_) )( ) ", pink)
-        + cs("| |_", blue)
-        + cs(" (_))   ", pink)
+        f" )\())  [{pink}]))\  )([/{pink}]    (      )\()) )\ )  )\()) ))\  ",
+        style=orange,
     )
-    print(cs(" | '_ \| || || '_|| ' \)) | '_ \| || ||  _|/ -_)  ", blue))
-    print(cs(" |_.__/ \_,_||_|  |_||_|  |_.__/ \_, | \__|\___|  ", dark_blue))
-    print(cs("                                 |__/             ", dark_blue))
-    print(cs("Ready to burn some servers?                       ", purple))
+    print(
+        f"((_[{pink}])\  /((_)[/{pink}](()\   )\ )  ((_)\ (([{pink}])/( (_))/ /[/{pink}]((_) ",
+        style=orange,
+    )
+    print(
+        "| |"
+        + f"[{orange}] (_)(_)[/{orange}]"
+        + f"[{pink}])( ((_) _(_/([/{pink}]  "
+        + f"| |[{pink}] (_) )( )  [/{pink}]"
+        + f"| |[{pink}]_  (_))[/{pink}]",
+        style=blue2,
+    )
+    print(
+        f"[{blue2}]"
+        + "| '_ \| || || '_|| ' \)) | '_ \| || ||  _|/ -_)  "
+        + f"[/{blue2}]",
+        style=blue2,
+    )
+    print("|_.__/ \_,_||_|  |_||_|  |_.__/ \_, | \__|\___|  ", style=blue3)
+    print("                                |__/             ", style=blue3)
+    print("Ready to burn some servers?                      ", style=red)
+    print()
 
 
 def main_help():
     banner()
-    print(cs("USAGE", purple))
-    print(
-        f"{space}./burn.py --target <ip:port or url> --method <method or help> [optionals...]"
+    usage_complete = Panel(
+        f"[{red}]./burn.py [/{red}]"
+        + f"[{light_blue}]--target [/{light_blue}]"
+        + f"[{pink}]<ip:port or url> [/{pink}]"
+        + f"[{light_blue}]--method [/{light_blue}]"
+        + f"[{pink}]<method or help> [/{pink}]"
+        + f"[{green}]optionals...[/{green}]",
+        expand=True,
+        width=78,
     )
-    print(f"\033[1m{cs('Or this for interactive mode:', purple)}\033[0m")
-    print(f"{space}./burn.py cli\n")
-    print(cs("FLAGS [OPTIONALS]", purple))
-    print(f"{space}--threads:\tThreads count (1-200)| default {light_blue}3{reset}")
-    print(
-        f"{space}--time:\tTime in seconds| default {light_blue}10{pink2}s{reset}| set {light_blue}0{reset} to infinite time"
+    usage_cli = Panel(
+        f"[{red}]./burn.py [/{red}]" + f"[{pink}]cli[/{pink}]",
+        expand=True,
+        width=17,
     )
-    print(f"{space}--banner:\tPrint just the banner")
-    print(
-        f"{space}--method:\tSelect the attack method| accepts "
-        + cs("help", "#ffcc00")
-        + " flag"
+
+    print(f"[{green}]Usage:[/{green}]")
+    print(usage_complete)
+    print(f"[{green}]Or this for interactive mode:[/{green}]")
+    print(usage_cli)
+
+    table = Table(title="FLAGS", show_lines=False)
+    table.add_column("flag", justify="right", style="cyan", no_wrap=True)
+    table.add_column("what does", style="magenta")
+    table.add_column("default", justify="right")
+    table.add_column("required", justify="right")
+    table.add_column("help", justify="right", style="green", no_wrap=True)
+
+    table.add_row("--threads", "Threads count (1-200)", "3 threads", "No")
+    table.add_row(
+        "--time",
+        "Time in seconds",
+        "3 seconds",
+        "No",
+        f"set [{light_blue}]0[/{light_blue}] to infinite time",
     )
-    print(
-        f"\nType: './burn.py -m E-help' to get a reference to learn about each type of attack"
+    table.add_row("--banner", "Print just the banner", "", "No")
+    table.add_row(
+        "--method",
+        "Select the attack method",
+        "",
+        "Yes",
+        f'accepts [{light_blue}]help[/{light_blue}] flag, "-m E-help"',
     )
+    table.add_row(
+        "--target",
+        "Select the target",
+        "",
+        "Yes",
+        f"https://web.com|web.com:80|127.0.0.1:22",
+    )
+
+    print(table)
 
 
 def methods_help():
     banner()
-    print(cs("TYPES", purple))
-    print(
-        f"{space}POD:      \tPing Of Death involves sending a malformed or otherwise malicious ping"
+    table = Table(title="Attacks", show_lines=True)
+    table.add_column("Attack type", justify="right", style="cyan", no_wrap=True)
+    table.add_column("Description", style="green3")
+
+    table.add_row(
+        "POD", "Ping Of Death involves sending a malformed or otherwise malicious ping"
     )
-    print(
-        f"{space}http:     \tHttp flood attack designed to overwhelm a targeted server with HTTP requests"
+    table.add_row(
+        "http",
+        "Http flood attack designed to overwhelm a targeted server with HTTP requests",
     )
-    print(
-        f"{space}slowloris:\tSlowloris tries to keep many connections to the target web server open"
+    table.add_row(
+        "slowloris",
+        "Slowloris tries to keep many connections to the target web server open",
     )
-    print(
-        f"{space}syn:      \tSYN flooding is done by creating connections without closing them"
+    table.add_row(
+        "syn",
+        "SYN flooding is done by creating connections without closing them",
     )
-    print(
-        f'{space}icmp:     \tA ping flood is a simple attack that overwhelms the victim with ICMP "echo request" packets'
+    table.add_row(
+        "icmp",
+        'A ping flood is a simple attack that overwhelms the victim with ICMP "echo request" packets',
     )
-    print(
-        f"{space}memcached:\tThe attack spoofs requests to a vulnerable memcached UDP server"
+    table.add_row(
+        "memcached",
+        "The attack spoofs requests to a vulnerable memcached UDP server",
     )
-    print(
-        f"{space}ntp:      \tThe NTP amplification attack is a reflection-based volumetric distributed denial of service attack"
+    table.add_row(
+        "ntp",
+        "The NTP amplification attack is a reflection-based volumetric distributed denial of service attack",
     )
-    print(
-        f"{space}udp:      \tA flood of UDP is carried out with a large number of requests with the user datagram protocol (UDP)"
+    table.add_row(
+        "udp",
+        "A flood of UDP is carried out with a large number of requests with the user datagram protocol (UDP)",
     )
-    print(
-        f"{space}ssdp:     \tSSDP enabled network devices that are also accessible to UPnP from the internet are an easy source for generating SSDP amplification floods."
+    table.add_row(
+        "ssdp",
+        "SSDP enabled network devices that are also accessible to UPnP from the internet are an easy source for generating SSDP amplification floods.",
     )
-    print(
-        f"{space}{yellow}☢ {red}ARMAGEDDOS{yellow} ☢{reset} Armageddos uses all methods together in an attack."
+    table.add_row(
+        f"[{yellow}]☢ [{red}]ARMAGEDDOS[/{red}] ☢[/{yellow}]",
+        f"[bold]Armageddos uses all methods together in an attack.[/bold]",
     )
-    print("\nWhich one is the best? find out for yourself:")
-    print(f"\033[1m{purple1}https://burn-byte.tk/docs{reset}\033[0m")
+    print(table)
 
 
 def reference():
     methods_help()
     print()
-    print(cs("Links to learning", purple))
-    print(f"{space}Burn Byte documentation:")
-    print(f"https://www.burn-byte.tk")
+    print(f"[{blue2}]Links to learning[/{blue2}]")
+    print("Burn Byte documentation:")
+    print("https://www.burn-byte.tk")
 
 
 """

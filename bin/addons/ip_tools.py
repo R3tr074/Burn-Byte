@@ -8,9 +8,16 @@ import requests
 import ipaddress
 from time import sleep
 from colorama import Fore
+from rich.console import Console
 from urllib.parse import urlparse
 
+console = Console()
+print = console.print
 """ Check if site is under CloudFlare protection """
+
+red = "red3"
+yellow = "yellow3"
+pink = "magenta3"
 
 
 def __isCloudFlare(link):
@@ -23,7 +30,7 @@ def __isCloudFlare(link):
         for i in range(len(ipv4)):
             if ipaddress.ip_address(origin) in ipaddress.ip_network(ipv4[i]):
                 print(
-                    f"{Fore.RED}[!] {Fore.YELLOW}The site is protected by CloudFlare, attacks may not produce results.{Fore.RESET}"
+                    f"[{red}][!] [{yellow}]The site is protected by CloudFlare, attacks may not produce results.[/{red}]"
                 )
                 sleep(1)
     except socket.gaierror:
@@ -38,7 +45,7 @@ def __GetAddressInfo(target):
         ip = target.split(":")[0]
         port = int(target.split(":")[1])
     except IndexError:
-        print(f"{Fore.RED}[!] {Fore.MAGENTA}You must enter ip and port{Fore.RESET}")
+        print(f"[{red}][!] [{yellow}]You must enter ip and port[/{red}]")
         sys.exit(1)
     else:
         return ip, port
@@ -96,21 +103,23 @@ def InternetConnectionCheck():
         requests.get("https://google.com", timeout=4)
     except:
         print(
-            f"{Fore.RED}[!] {Fore.MAGENTA}Your device is not connected to the Internet{Fore.RESET}"
+            f"[{red}][!] [{pink}]Your device is not connected to the Internet[/{red}]"
         )
         sys.exit(1)
 
 
 def CheckTargetConnection(target):
-    resposta = -1
+    response = -1
     if target.startswith("http"):
         target = target.split("//")[1]
+    if target.find(":") != -1:
+        target = target.split(":")[0]
 
     if platform.system().lower() == "windows":
         ping_str = "-n 1"
-        resposta = os.system("ping " + ping_str + " " + target + " > NUL")
+        response = os.system("ping " + ping_str + " " + target + " > NUL")
     else:
         ping_str = "-c 1"
-        resposta = os.system("ping " + ping_str + " " + target + " > /dev/null 2>&1")
+        response = os.system("ping " + ping_str + " " + target + " > /dev/null 2>&1")
 
-    return resposta == 0
+    return response == 0

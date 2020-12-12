@@ -1,9 +1,11 @@
 import sys
 from bin.addons.banner import *
 from bin.addons.menu import menu
+from rich.console import Console
 
-red = "\033[38;5;196m"
-reset = "\033[0m"
+console = Console()
+
+print = console.print
 
 
 def arg_manager(argv):
@@ -39,12 +41,12 @@ def arg_manager(argv):
             try:
                 if int(threads) < 1 or int(threads) > 200:
                     print(
-                        f"{red}[✘] ERROR {threads} not is a valid value to threads flag, use 1 - 200{reset}"
+                        f"[{red}][✘] ERROR {threads} not is a valid value to threads flag, use 1 - 200[/{red}]"
                     )
                     return 1
             except:
                 print(
-                    f"{red}[✘] ERROR {threads} not is a valid value to threads flag, use 1 - 200{reset}"
+                    f"[{red}][✘] ERROR {threads} not is a valid value to threads flag, use 1 - 200[/{red}]"
                 )
                 return 1
         if arg == "--banner":
@@ -56,12 +58,12 @@ def arg_manager(argv):
             try:
                 if int(time) < 0:
                     print(
-                        f"{red}[✘] ERROR {time} not is a valid value to time flag, use any value greater than 0{reset}"
+                        f"[{red}][✘] ERROR {time} not is a valid value to time flag, use any value greater than 0[/{red}]"
                     )
                     return 1
             except:
                 print(
-                    f"{red}[✘] ERROR {time} not is a valid value to time flag, use any value greater than 0{reset}"
+                    f"[{red}][✘] ERROR {time} not is a valid value to time flag, use any value greater than 0[/{red}]"
                 )
                 return 1
 

@@ -3,11 +3,14 @@ import os
 import sys
 import platform
 from time import ctime
-from stringcolor import *
+from rich.console import Console
 
-purple = "#6502dd"
-red = "#ff0033"
-yellow = "#ffcc00"
+# Define styled print
+print = Console().print
+
+purple = "blue_violet"
+yellow = "yellow1"
+red = "red3"
 
 """ This function will stop the program when a critical error occurs """
 
@@ -30,26 +33,26 @@ system_time = ctime()
 def CriticalError(message, error):
     print(
         f"""
-    {cs(":=== Critical error:", red)}
-    {cs(f"MESSAGE: {message}", purple)}
-    {cs(f"ERROR: {error}", purple)}
-    {cs(":=== Python info:", red)}
-    {cs(f"PYTHON VERSION: {py_version}", purple)}
-    {cs(f"PYTHON BUILD: {py_build}", purple)}
-    {cs(f"PYTHON COMPILER: {py_compiler}", purple)}
-    {cs(f"SCRIPT LOCATION: {script_location}", purple)}
-    {cs(f"CURRENT LOCATION: {current_location}", purple)}
-    {cs(":=== System info:", red)}
-    {cs(f"SYSTEM: {system}", purple)}
-    {cs(f"RELEASE: {system_realese}", purple)}
-    {cs(f"VERSION: {system_version}", purple)}
-    {cs(f"ARCHITECTURE: {system_architecture}", purple)}
-    {cs(f"PROCESSOR: {system_processor}", purple)}
-    {cs(f"MACHINE: {system_machine}", purple)}
-    {cs(f"NODE: {system_node}", purple)}
-    {cs(f"TIME: {system_time}", purple)}
-    {cs(":=== Report:", red)}
-    {cs("Please report it here: https://github.com/R3tr074/BurnByte/issues/new", yellow)}
+    [{red}]:=== Critical error:"[/{red}]
+    [{purple}]MESSAGE: {message}[/{purple}]
+    [{purple}]ERROR: {error}[/{purple}]
+    [{red}]:=== Python info:"[/{red}]
+    [{purple}]PYTHON VERSION: {py_version}[/{purple}]
+    [{purple}]PYTHON BUILD: {py_build}[/{purple}]
+    [{purple}]PYTHON COMPILER: {py_compiler}[/{purple}]
+    [{purple}]SCRIPT LOCATION: {script_location}[/{purple}]
+    [{purple}]CURRENT LOCATION: {current_location}[/{purple}]
+    [{red}]:=== System info:"[/{red}]
+    [{purple}]SYSTEM: {system}[/{purple}]
+    [{purple}]RELEASE: {system_realese}[/{purple}]
+    [{purple}]VERSION: {system_version}[/{purple}]
+    [{purple}]ARCHITECTURE: {system_architecture}[/{purple}]
+    [{purple}]PROCESSOR: {system_processor}[/{purple}]
+    [{purple}]MACHINE: {system_machine}[/{purple}]
+    [{purple}]NODE: {system_node}[/{purple}]
+    [{purple}]TIME: {system_time}[/{purple}]
+    [{red}]:=== Report:"[/{red}]
+    [{yellow}]Please report it here: https://github.com/R3tr074/BurnByte/issues/new"[/{yellow}]
     """
     )
     sys.exit(5)

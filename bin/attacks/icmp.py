@@ -1,6 +1,13 @@
 # Import modules
+from rich.console import Console
 from scapy.all import IP, TCP, send, RandShort
-from colorama import Fore
+
+# Define styled print
+print = Console().print
+red = "red3"
+green = "green1"
+yellow = "yellow1"
+pink = "magenta3"
 
 
 def flood(target):
@@ -12,10 +19,6 @@ def flood(target):
         try:
             send(packet, verbose=False)
         except Exception as e:
-            print(
-                f"{Fore.RED}[!] {Fore.MAGENTA}Error while sending 'ICMP'\n{Fore.MAGENTA}{e}{Fore.RESET}"
-            )
+            print(f"[{red}][!] [{pink}]Error while sending 'ICMP'\n{e}[/{red}]")
         else:
-            print(
-                f"{Fore.GREEN}[+] {Fore.YELLOW}ICMP packet send to {target[0]} {Fore.RESET}"
-            )
+            print(f"[{green}][+] [{yellow}]ICMP packet send to {target[0]} [/{green}]")

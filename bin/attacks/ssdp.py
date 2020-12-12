@@ -1,13 +1,15 @@
 import random
 from scapy.all import *
-from stringcolor import *
 from scapy.layers.inet import *
+from rich.console import Console
 from bin.addons.utils import __path
 
-red = "#ff0033"
-green = "#02f93c"
-yellow = "#eefc32"
-blue = "\033[38;5;51m"
+# Define styled print
+print = Console().print
+red = "red3"
+green = "green1"
+yellow = "yellow1"
+blue = "dark_slate_gray2"
 
 
 payload = [
@@ -37,9 +39,12 @@ def flood(target):
         )
     except Exception as e:
         print(
-            f"\033[1m{cs('[✘] ERROR', red)}\033[0m {cs('While sending packget', yellow)}\n{e}"
+            f"[{red}][✘] ERROR[/{red}] "
+            + f"[{yellow}]While sending packget[/{yellow}]\n{e}"
         )
     else:
         print(
-            f"{cs(f'[✔] SUCCESS', green)} {cs(f'Packget sent! send to:', yellow)} {blue}{server}\033[0m"
+            f"[{green}][✔] SUCCESS[{green}] "
+            + f"[{yellow}]Packget sent! send to:[/{yellow}] "
+            + f"[{blue}]{server}"
         )
