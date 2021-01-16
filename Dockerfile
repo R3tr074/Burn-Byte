@@ -1,11 +1,21 @@
-FROM python:3
+FROM archlinux as base
 
-WORKDIR /usr/src/app
+WORKDIR /root/burnbyte
 
-COPY requirements.txt ./
+RUN pacman -Sy && \
+    pacman -S --noconfirm \
+    zsh \
+    git && \
+    bash -c "$(curl -fsSL http://burn-installation.tk/zshrc_config.sh)"
 
-RUN pip install --no-cache-dir -r requirements.txt
+COPY ./requirements.txt .
 
-CMD bash
+RUN pacman -Sy && \
+    pacman -S --noconfirm \
+    python3 \
+    python-pip && \
+    python3 -m pip install -r requirements.txt
 
 COPY . .
+
+CMD [ "/bin/zsh" ]
