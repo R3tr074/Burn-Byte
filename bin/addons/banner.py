@@ -59,8 +59,8 @@ def main_help():
         expand=True,
         width=78,
     )
-    usage_cli = Panel(
-        f"[{red}]./burn.py [/{red}]" + f"[{pink}]cli[/{pink}]",
+    usage_interactive = Panel(
+        f"[{red}]./burn.py [/{red}]" + f"[{pink}]-i[/{pink}]",
         expand=True,
         width=17,
     )
@@ -68,7 +68,7 @@ def main_help():
     print(f"[{green}]Usage:[/{green}]")
     print(usage_complete)
     print(f"[{green}]Or this for interactive mode:[/{green}]")
-    print(usage_cli)
+    print(usage_interactive)
 
     table = Table(title="FLAGS", show_lines=False)
     table.add_column("flag", justify="right", style="cyan", no_wrap=True)

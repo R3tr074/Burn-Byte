@@ -22,7 +22,7 @@ def arg_manager(argv):
     root = True
 
     for index, arg in enumerate(argv):
-        if arg == "cli":
+        if arg in ("-i", "--interactive"):
             target, method, threads, time, root = menu()
             break
 
