@@ -6,8 +6,9 @@ from rich.console import Console
 from bin.crash import CriticalError
 from bin.addons.banner import banner
 from bin.addons.banner import methods_help
-from humanfriendly import format_timespan, Spinner
+from humanfriendly import format_timespan
 from bin.addons.ip_tools import GetTargetAddress, InternetConnectionCheck
+from rich.progress import track
 
 # Define styled print
 print = Console().print
@@ -107,27 +108,33 @@ class AttackMethod:
             self.method(self.target)
 
     # Start threads
-    def __RunThreads(self):
-        # Run timer thread
+    def __RunThreads(self) -> None:
+        """
+        Start and run Threads
+        """
         thread = Thread(target=self.__RunTimer)
         thread.start()
+
         # Create flood threads
-        for _ in range(self.threads_count):
+        for _ in track(
+            range(self.threads_count),
+            description=f"[{pink}]Creating {self.threads_count} threads...",
+        ):
             thread = Thread(target=self.__RunFlood)
             self.threads.append(thread)
+
         # Start flood threads
-        with Spinner(
-            label=f"[{pink}]Starting {self.threads_count} threads[/{pink}]",
-            total=100,
-        ) as spinner:
-            for index, thread in enumerate(self.threads):
-                thread.start()
-                spinner.step(100 / len(self.threads) * (index + 1))
+        for thread in track(
+            self.threads,
+            description=f"[{pink}]Starting {self.threads_count} threads",
+        ):
+            thread.start()
+
         # Wait flood threads for stop
         for index, thread in enumerate(self.threads):
             thread.join()
             print(
-                f"[{green}][+][/{green}] [{yellow}]Stopped thread {(index + 1)}[/{yellow}]"
+                f"[{pink}][?][/{pink}] [{yellow}]Stopped thread {index + 1}[/{yellow}]"
             )
 
     # Start ddos attack
