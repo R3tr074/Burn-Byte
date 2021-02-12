@@ -9,7 +9,10 @@ from bin.attacks.syn import flood as syn
 from bin.attacks.udp import flood as udp
 
 
-def flood(target):
+def flood(target) -> None:
+    """
+    Run armageddos flood
+    """
     http(target)
     icmp(target)
     memcached(target)
