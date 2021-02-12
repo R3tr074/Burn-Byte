@@ -16,7 +16,10 @@ light_blue = "dark_slate_gray2"
 green = "green1"
 
 
-def banner():
+def banner() -> None:
+    """
+    print Burn Byte banner
+    """
     print("    )                        )           )       ", style=pink)
     print(" ( /(    (   (            ( /(  (     ( /(   (   ", style=orange)
     print(
@@ -47,7 +50,10 @@ def banner():
     print()
 
 
-def main_help():
+def main_help() -> None:
+    """
+    print global help message
+    """
     banner()
     usage_complete = Panel(
         f"[{red}]./burn.py [/{red}]"
@@ -104,7 +110,10 @@ def main_help():
     print(table)
 
 
-def methods_help():
+def methods_help() -> None:
+    """
+    print methods help message
+    """
     banner()
     table = Table(title="Attacks", show_lines=True)
     table.add_column("Attack type", justify="right", style="cyan", no_wrap=True)
@@ -152,7 +161,10 @@ def methods_help():
     print(table)
 
 
-def reference():
+def reference() -> None:
+    """
+    print reference and indications
+    """
     methods_help()
     print()
     print(f"[{blue2}]Links to learning[/{blue2}]")
