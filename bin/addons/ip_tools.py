@@ -1,26 +1,25 @@
 # Import modules
-import subprocess
 import os
 import sys
 import socket
-import platform
 import requests
 import ipaddress
 from time import sleep
-from colorama import Fore
 from rich.console import Console
 from urllib.parse import urlparse
 
 console = Console()
 print = console.print
-""" Check if site is under CloudFlare protection """
 
 red = "red3"
 yellow = "yellow3"
 pink = "magenta3"
 
 
-def __isCloudFlare(link):
+def __isCloudFlare(link) -> bool:
+    """
+    Check if site is under CloudFlare protection
+    """
     parsed_uri = urlparse(link)
     domain = "{uri.netloc}".format(uri=parsed_uri)
     try:
@@ -37,10 +36,10 @@ def __isCloudFlare(link):
         return False
 
 
-""" Return ip, port """
-
-
-def __GetAddressInfo(target):
+def __GetAddressInfo(target: str) -> [str, int]:
+    """
+    Get ip and port to target
+    """
     try:
         ip = target.split(":")[0]
         port = int(target.split(":")[1])
@@ -51,19 +50,19 @@ def __GetAddressInfo(target):
         return ip, port
 
 
-""" Return url (for HTTP method) """
-
-
-def __GetURLInfo(target):
+def __GetURLInfo(target) -> str:
+    """
+    get url for HTTP method
+    """
     if not target.startswith("http"):
         target = f"http://{target}"
     return target
 
 
-""" Return target """
-
-
-def GetTargetAddress(target, method):
+def GetTargetAddress(target: str, method: str) -> str:
+    """
+    Return target address
+    """
     methods = [
         "POD",
         "syn",
@@ -93,33 +92,36 @@ def GetTargetAddress(target, method):
         return target
 
 
-GetTargetAddress("https://github.com", "POD")
+def InternetConnectionCheck() -> None:
+    """
+    Test internet connection
+    """
+    response = -1
+    if os.name == "nt":  # if is windows
+        response = os.system(f"ping -n 1 google.com > NUL")
+    else:
+        response = os.system(f"ping -c 1 google.com > /dev/null 2>&1")
 
-""" Is connected to internet """
-
-
-def InternetConnectionCheck():
-    try:
-        requests.get("https://google.com", timeout=4)
-    except:
+    if response != 0:
         print(
-            f"[{red}][!] [{pink}]Your device is not connected to the Internet[/{red}]"
+            f"[{red}][!][{pink}] Your device is not connected to the Internet[/{red}]"
         )
         sys.exit(1)
 
 
-def CheckTargetConnection(target):
+def CheckTargetConnection(target: str) -> bool:
+    """
+    Test connection to target
+    """
     response = -1
     if target.startswith("http"):
         target = target.split("//")[1]
     if target.find(":") != -1:
         target = target.split(":")[0]
 
-    if platform.system().lower() == "windows":
-        ping_str = "-n 1"
-        response = os.system("ping " + ping_str + " " + target + " > NUL")
+    if os.name == "nt":  # if is windows
+        response = os.system(f"ping -n 1 {target} > NUL")
     else:
-        ping_str = "-c 1"
-        response = os.system("ping " + ping_str + " " + target + " > /dev/null 2>&1")
+        response = os.system(f"ping -c 1 {target} > /dev/null 2>&1")
 
     return response == 0
