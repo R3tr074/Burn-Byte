@@ -19,7 +19,10 @@ red = "red3"
 yellow = "yellow1"
 
 
-def menu():
+def menu() -> [str, str, int, int, bool]:
+    """
+    Spawn a interactive menu
+    """
     banner()
     while True:
         target = input(
