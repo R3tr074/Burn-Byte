@@ -12,8 +12,6 @@ purple = "blue_violet"
 yellow = "yellow1"
 red = "red3"
 
-""" This function will stop the program when a critical error occurs """
-
 py_version = platform.python_version()
 py_build = "{}, DATE: {}".format(*platform.python_build())
 py_compiler = platform.python_compiler()
@@ -30,7 +28,10 @@ system_node = platform.node()
 system_time = ctime()
 
 
-def CriticalError(message, error):
+def CriticalError(message, error) -> None:
+    """
+    This function will stop the program when a critical error occurs
+    """
     print(
         f"""
     [{red}]:=== Critical error:"[/{red}]
