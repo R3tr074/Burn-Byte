@@ -3,12 +3,13 @@ import os
 import json
 import random
 
-# Get universal path
 
-
-def __path(*args):
+def __path(*args) -> str:
+    """
+    Get universal path
+    """
     complete_path = args[0]
-    if os.name == "nt":
+    if os.name == "nt":  # if is windows
         join = "\\"
     else:
         join = "/"
@@ -20,27 +21,29 @@ def __path(*args):
     return complete_path
 
 
-# Get random IP
-
-
-def random_IP():
+def random_IP() -> str:
+    """
+    Get random IP
+    """
     ip = []
     for _ in range(0, 4):
         ip.append(str(random.randint(1, 255)))
     return ".".join(ip)
 
 
-# Get random user agent
-def random_useragent():
+def random_useragent() -> str:
+    """
+    Get random user agent
+    """
     with open(__path("bin", "config", "user_agents.json"), "r") as agents:
         user_agents = json.load(agents)["agents"]
     return random.choice(user_agents)
 
 
-# Check root
-
-
-def root_privileges():
+def root_privileges() -> bool:
+    """
+    Check root privileges in multiplataform
+    """
     try:
         is_admin = os.getuid() == 0
     except AttributeError:
