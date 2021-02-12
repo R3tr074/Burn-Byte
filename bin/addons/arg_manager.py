@@ -1,14 +1,15 @@
-import sys
 from bin.addons.banner import *
 from bin.addons.menu import menu
-from rich.console import Console
 
 console = Console()
-
 print = console.print
 
 
-def arg_manager(argv):
+def arg_manager(argv: [str]) -> {"threads": int, "target": str, "time": int, "method": str, "root": bool}:
+    """
+    Argument manager
+
+    """
     arg_size = len(argv)
 
     if arg_size == 1:
