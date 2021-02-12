@@ -5,7 +5,9 @@ console = Console()
 print = console.print
 
 
-def arg_manager(argv: [str]) -> {"threads": int, "target": str, "time": int, "method": str, "root": bool}:
+def arg_manager(
+    argv: [str],
+) -> {"threads": int, "target": str, "time": int, "method": str, "root": bool}:
     """
     Argument manager
 
@@ -38,9 +40,9 @@ def arg_manager(argv: [str]) -> {"threads": int, "target": str, "time": int, "me
             target = argv[index + 1]
 
         if arg in ("-t", "--threads"):
-            threads = argv[index + 1]
             try:
-                if int(threads) < 1 or int(threads) > 200:
+                threads = int(argv[index + 1])
+                if threads < 1 or threads > 200:
                     print(
                         f"[{red}][✘] ERROR {threads} not is a valid value to threads flag, use 1 - 200[/{red}]"
                     )
