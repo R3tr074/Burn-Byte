@@ -2,12 +2,17 @@
 import sys
 from time import time, sleep
 from threading import Thread
-from rich.console import Console
+from humanfriendly import format_timespan
+
+# bin
 from bin.crash import CriticalError
 from bin.addons.banner import banner
 from bin.addons.banner import methods_help
-from humanfriendly import format_timespan
 from bin.addons.ip_tools import GetTargetAddress, InternetConnectionCheck
+from bin.addons.clean import clear
+
+# rich lib
+from rich.console import Console
 from rich.progress import track
 
 # Define styled print
@@ -107,7 +112,6 @@ class AttackMethod:
         while self.is_running:
             self.method(self.target)
 
-    # Start threads
     def __RunThreads(self) -> None:
         """
         Start and run Threads
@@ -186,7 +190,6 @@ class AttackMethod:
         except Exception as err:
             print(err)
             sleep(1.5)
-            from bin.addons.clean import clear
 
             clear()
             banner()
