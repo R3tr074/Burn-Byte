@@ -41,10 +41,10 @@ Burn Byte is a most complete ddos tools, including flood and amplification attac
 - [Memcached](https://burn-byte.tk/docs/attacks/memcached)
 - [NTP](https://burn-byte.tk/docs/attacks/ntp)
 - [Ping Of Death](https://burn-byte.tk/docs/attacks/ping-of-death)
-- Slowloris
-- SSDP
-- Syn
-- Udp
+- [Slowloris](https://burn-byte.tk/docs/attacks/slowloris)
+- [SSDP](https://burn-byte.tk/docs/attacks/ssdp)
+- [Syn](https://burn-byte.tk/docs/attacks/syn)
+- [Udp](https://burn-byte.tk/docs/attacks/udp)
 
 # :recycle: How to help and contribute to the project?
 
