@@ -42,6 +42,7 @@ time = int(args["time"])
 target = args["target"]
 method = args["method"]
 root = args["root"]
+force = args["force"]
 
 if not root_privileges() and root:
     print(

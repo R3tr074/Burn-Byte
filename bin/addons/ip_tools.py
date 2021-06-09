@@ -92,7 +92,7 @@ def GetTargetAddress(target: str, method: str) -> str:
         return target
 
 
-def InternetConnectionCheck() -> None:
+def InternetConnectionCheck() -> bool:
     """
     Test internet connection
     """
@@ -101,12 +101,7 @@ def InternetConnectionCheck() -> None:
         response = os.system(f"ping -n 1 google.com > NUL")
     else:
         response = os.system(f"ping -c 1 google.com > /dev/null 2>&1")
-
-    if response != 0:
-        print(
-            f"[{red}][!][{pink}] Your device is not connected to the Internet[/{red}]"
-        )
-        sys.exit(1)
+    return response == 0
 
 
 def CheckTargetConnection(target: str) -> bool:

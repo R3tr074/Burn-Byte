@@ -69,7 +69,7 @@ def GetMethodByName(method):
 
 class AttackMethod:
     # Constructor
-    def __init__(self, name, duration, threads, target):
+    def __init__(self, name, duration, threads, target, force):
         self.name = name
         self.duration = duration
         self.threads_count = threads
@@ -77,10 +77,16 @@ class AttackMethod:
         self.target = target
         self.threads = []
         self.is_running = False
+        self.force = force
 
     # Enter
     def __enter__(self):
-        InternetConnectionCheck()
+        if not InternetConnectionCheck():
+            print(
+                f"[{red}][!][{pink}] Your device is not connected to the Internet[/{red}]"
+            )
+            if not self.force: sys.exit(1) # if not on force mode, quit
+
         self.method = GetMethodByName(self.name)
         self.target = GetTargetAddress(self.target_name, self.name)
         return self

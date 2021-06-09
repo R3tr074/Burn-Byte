@@ -22,12 +22,16 @@ def arg_manager(
     threads = 3
     time = 10
     method = None
+    force = False
     root = True
 
     for index, arg in enumerate(argv):
         if arg in ("-i", "--interactive"):
             target, method, threads, time, root = menu()
             break
+
+        if arg in ("-f", "--force"):
+            force = True
 
         if arg == "--no-root":
             root = False
